@@ -1,0 +1,12 @@
+#!/bin/bash
+#Fetch and auto-ssh into your floaty box
+#USAGE: fme <OS flavor>
+#Empty OS flavor returns list of available vms
+OS=$1
+if [ -z "$OS" ]
+then
+floaty list
+else
+OUTPUT=$(floaty get ${OS} | cut -b 3-41)
+ssh root@${OUTPUT}
+fi

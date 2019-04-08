@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+#Iterates and updates all git repos in a given directory.
+#USAGE: update_git <PATH_DO_DIR>
+#Empty argument defaults to ~/Repos directory
+if [[ -z "$1" ]] then
+  DIR=~/Repos
+else
+  DIR="$1"
+fi
+
+PWD=`pwd`
+
+for repo in "${DIR}/"*; do
+  if [[ -d "${repo}/.git" ]] then
+    cd "${repo}"
+    echo -e "\033[1mFound git repository in $repo.\033[0m"
+    git fetch
+    if [[ ! -z `git remote | grep upstream` ]] then
+      echo -e "\033[36mFetching upstream changes for $repo.\033[0m"
+      git fetch upstream
+    fi
+  fi
+done
+
+cd "${PWD}"
