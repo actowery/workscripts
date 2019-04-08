@@ -1,0 +1,32 @@
+#!/bin/bash
+#Automates the tarballsplosion and repackaging necessary to locally build a new package
+#USAGE: package_swap <PACKAGE_NAME> <PE_VER>
+set +x
+PKG=$1
+VER=$2
+export PE_VER=$2
+LATEST=$(curl http://neptune.puppetlabs.lan/$2/ci-ready/LATEST)
+echo "Copying vanagon repo to tmp"
+echo
+NODE=$(floaty get centos-7-x86_64 | cut -b 3-41)
+mkdir /tmp/packswap
+cp -R ~/Repos/puppet-enterprise-vanagon /tmp/packswap
+cd /tmp/packswap/puppet-enterprise-vanagon
+echo "Preparing bundler"
+bundle install
+bundle update
+echo "Building $PKG"
+bundle exec build $PKG el-7-x86_64
+PKG_FULL=$(find . -name "*$PKG-$VER*")
+echo "Downloading tarball and exploding"
+curl -O http://neptune.puppetlabs.lan/2019.1/ci-readypuppet-enterprise-$LATEST-el-7-x86_64.tar
+echo "Untarring"
+tar -xf puppet-enterprise-$LATEST-el-7-x86_64.tar
+echo "Manipulating tarred package"
+cp -R ~/Repos/frankenbuilder/gpg/ /tmp/packswap/puppet-enterprise-vanagon/puppet-enterprise-$LATEST-el-7-x86_64
+rm /tmp/packswap/puppet-enterprise-vanagon/puppet-enterprise-$LATEST-el-7-x86_64/packages/el-7-x86_64/$PKG-$VER*
+cp /tmp/packswap/puppet-enterprise-vanagon/output/el/7/products/x86_64/$PKG-$VER* /tmp/packswap/puppet-enterprise-vanagon/puppet-enterprise-$LATEST-el-7-x86_64/packages/el-7-x86_64/
+tar -czvf updated_tarball.tar /tmp/packswap/puppet-enterprise-vanagon/puppet-enterprise-$LATEST-el-7-x86_64
+scp updated_tarball.tar $NODE:/root
+ssh root@$NODE
+#rm puppet-enterprise-$LATEST-el-7-x86_64
