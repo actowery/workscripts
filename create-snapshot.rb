@@ -1,0 +1,18 @@
+#!/bin/ruby
+#Sets your currently active VMS in floaty to a snapshot.
+@PRUNED_LIST = []
+@LIST=%x(floaty list --active)
+@LIST = @LIST.split("\n- ")
+
+@LIST.each do |node|
+  if node.include? "roles:"
+    node = node.slice(0..(node.index('.net')+ ('.net'.length - 1)))
+    @PRUNED_LIST.push(node)
+  end
+end
+
+@PRUNED_LIST.each do |fqdn|
+  p "Snapshotting #{fqdn}"
+  %x(floaty snapshot #{fqdn})
+end
+p "Snapshots of #{@PRUNED_LIST.length} node(s) taken"
