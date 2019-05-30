@@ -1,0 +1,3 @@
+#!/bin/bash
+set +x
+bundle exec rake single_spec\["${1}"\]

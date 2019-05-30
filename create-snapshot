@@ -1,4 +1,3 @@
-#!/usr/local/lib/ruby
 #Sets your currently active VMS in floaty to a snapshot.
 @PRUNED_LIST = []
 @LIST=%x(floaty list --active)
