@@ -1,4 +1,4 @@
-#!/usr/local/lib/ruby
+#!/Users/puppet/.rvm/rubies/ruby-2.4.6/bin/ruby
 #Returns your currently active VMS in floaty to the most previous snapshot.
 @PRUNED_LIST = []
 @LIST=%x(floaty list --active)
