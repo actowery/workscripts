@@ -7,4 +7,4 @@ cd ${REPO}
 git remote set-url origin  git@github.com:actowery/${REPO}.git
 git remote add upstream git@github.com:puppetlabs/${REPO}.git
 git remote set-url --push upstream no_push
-echo 'New repo successfully created. URLs set and push to upstream disabled
+echo 'New repo successfully created. URLs set and push to upstream disabled'

@@ -1,9 +1,4 @@
 #!/bin/bash
 
-SCPTARGET=wulov57dp6fi3an.delivery.puppetlabs.net
-scp /Users/adrian.towery/Repos/enterprise_tasks/tasks/fetch_sync_peer_data.json ${SCPTARGET}:/opt/puppetlabs/installer/share/boltdir/site/enterprise_tasks/tasks
-scp /Users/adrian.towery/Repos/enterprise_tasks/tasks/fetch_sync_peer_data.rb ${SCPTARGET}:/opt/puppetlabs/installer/share/boltdir/site/enterprise_tasks/tasks
-scp /Users/adrian.towery/Repos/enterprise_tasks/plans/ha_puppetdb_sync.pp ${SCPTARGET}:/opt/puppetlabs/installer/share/boltdir/site/enterprise_tasks/plans
-scp /Users/adrian.towery/Repos/enterprise_tasks/tasks/update_sync_peers.json ${SCPTARGET}:/opt/puppetlabs/installer/share/boltdir/site/enterprise_tasks/tasks
-scp /Users/adrian.towery/Repos/enterprise_tasks/tasks/update_sync_peers.rb ${SCPTARGET}:/opt/puppetlabs/installer/share/boltdir/site/enterprise_tasks/tasks
-scp /Users/adrian.towery/Repos/puppet-enterprise-modules/modules/pe_manager/lib/puppet_x/util/service_status.rb ${SCPTARGET}:/opt/puppetlabs/server/data/environments/enterprise/modules/pe_manager/lib/puppet_x/util
+SCPTARGET=root@lvme4j1ze1nu2gs.delivery.puppetlabs.net
+scp /Users/puppet/Repos/enterprise_tasks/plans/ha_puppetdb_sync.pp ${SCPTARGET}:/opt/puppetlabs/installer/share/boltdir/site/enterprise_tasks/plans/ha_puppetdb_sync.pp
