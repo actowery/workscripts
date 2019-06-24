@@ -1,4 +1,5 @@
 #!/bin/bash
 
-SCPTARGET=root@lvme4j1ze1nu2gs.delivery.puppetlabs.net
-scp /Users/puppet/Repos/enterprise_tasks/plans/ha_puppetdb_sync.pp ${SCPTARGET}:/opt/puppetlabs/installer/share/boltdir/site/enterprise_tasks/plans/ha_puppetdb_sync.pp
+SCPTARGET=root@$1
+scp -r /Users/puppet/Repos/enterprise_tasks/plans ${SCPTARGET}:/opt/puppetlabs/installer/share/boltdir/site/enterprise_tasks/plans
+scp -r /Users/puppet/Repos/enterprise_tasks/tasks ${SCPTARGET}:/opt/puppetlabs/installer/share/boltdir/site/enterprise_tasks/tasks
