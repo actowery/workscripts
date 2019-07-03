@@ -1,5 +1,19 @@
 #!/bin/bash
 
 SCPTARGET=root@$1
-scp -r /Users/puppet/Repos/enterprise_tasks/plans ${SCPTARGET}:/opt/puppetlabs/installer/share/boltdir/site/enterprise_tasks/plans
-scp -r /Users/puppet/Repos/enterprise_tasks/tasks ${SCPTARGET}:/opt/puppetlabs/installer/share/boltdir/site/enterprise_tasks/tasks
+
+case "$2" in
+        p-e-m)
+            scp -r /Users/puppet/Repos/puppet-enterprise-modules/modules/ ${SCPTARGET}:/opt/puppetlabs/server/data/environments/enterprise/
+            ;;
+         
+        tasks)
+            scp -r /Users/puppet/Repos/enterprise_tasks/plans/ ${SCPTARGET}:/opt/puppetlabs/installer/share/boltdir/site/enterprise_tasks
+            scp -r /Users/puppet/Repos/enterprise_tasks/tasks/ ${SCPTARGET}:/opt/puppetlabs/installer/share/boltdir/site/enterprise_tasks
+            ;;        
+
+        *)
+            echo $"Usage: $0 {p-e-m|tasks|others to be added as needed}"
+            exit 1
+ 
+esac

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cat /dev/zero | ssh-keygen -q -N ""
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+ssh root@$1 cat ~/.ssh/id_rsa.pub
