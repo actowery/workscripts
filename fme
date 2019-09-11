@@ -8,5 +8,5 @@ then
 floaty list
 else
 OUTPUT=$(floaty get ${OS} | cut -b 3-41)
-ssh root@${OUTPUT}
+ssh -o StrictHostKeyChecking=no root@${OUTPUT}
 fi

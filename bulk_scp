@@ -3,17 +3,18 @@
 SCPTARGET=root@$1
 
 case "$2" in
-        p-e-m)
-            scp -r /Users/puppet/Repos/puppet-enterprise-modules/modules/ ${SCPTARGET}:/opt/puppetlabs/server/data/environments/enterprise/
+        modules)
+            scp -r /Users/puppet/Repos/puppet-enterprise-modules/modules/$3/lib ${SCPTARGET}:/opt/puppetlabs/server/data/environments/enterprise/modules/$3/
             ;;
-         
         tasks)
-            scp -r /Users/puppet/Repos/enterprise_tasks/plans/ ${SCPTARGET}:/opt/puppetlabs/installer/share/boltdir/site/enterprise_tasks
-            scp -r /Users/puppet/Repos/enterprise_tasks/tasks/ ${SCPTARGET}:/opt/puppetlabs/installer/share/boltdir/site/enterprise_tasks
+            scp -r /Users/puppet/Repos/enterprise_tasks/plans/ ${SCPTARGET}:/opt/puppetlabs/installer/share/Boltdir/site/enterprise_tasks
+            scp -r /Users/puppet/Repos/enterprise_tasks/tasks/ ${SCPTARGET}:/opt/puppetlabs/installer/share/Boltdir/site/enterprise_tasks
             ;;        
-
+        shim)
+            scp -r /Users/puppet/Repos/pe-installer-shim/puppet-enterprise-installer ${SCPTARGET}:~
+            ;;
         *)
-            echo $"Usage: $0 {p-e-m|tasks|others to be added as needed}"
+            echo $"Usage: $0 {SCPTARGET} {modules {module}|tasks|shim others to be added as needed}"
             exit 1
  
 esac
