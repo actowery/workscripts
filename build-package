@@ -1,0 +1,17 @@
+#!/bin/bash
+#params
+#1- which vanagon repo [installer,modules]
+#2- which machine type
+#3- if modules, which module?
+REPO=$1
+MACHINE=$2
+MODULE="installer"
+#run vanagon with given machine
+cd ~/Repos/pe-${REPO}-vanagon
+bundle install
+bundle update
+VANAGON_SSH_KEY=~/.ssh/id_rsa-acceptance
+if [ "$REPO" = "modules" ]; then
+  MODULE=$3
+fi
+bundle exec build pe-${MODULE} ${MACHINE} 

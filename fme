@@ -1,5 +1,4 @@
 #!/bin/bash
-#Fetch and auto-ssh into your floaty box
 #USAGE: fme <OS flavor>
 #Empty OS flavor returns list of available vms
 OS=$1
