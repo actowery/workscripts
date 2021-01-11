@@ -13,6 +13,6 @@ end
 
 @PRUNED_LIST.each do |fqdn|
   p "Snapshotting #{fqdn}"
-  %x(floaty snapshot #{fqdn})
+  %x(floaty snapshot #{fqdn} --service vm)
 end
 p "Snapshots of #{@PRUNED_LIST.length} node(s) taken"

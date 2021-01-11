@@ -1,0 +1,6 @@
+!#/bin/bash
+
+PACKAGE_PATH=$1
+
+cp PACKAGE_PATH ~/tmp/
+

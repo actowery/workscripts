@@ -1,0 +1,15 @@
+#!/bin/bash
+#grabs a work repo with a specific pr to be reviewed if a pr number is provided as the second argument
+REPO=$1
+PR=$2
+cd ~/tmp
+rm -rf ${REPO}
+git clone git@github.com:puppetlabs/${REPO}.git
+cd ${REPO}
+echo "PR IS"
+echo "${PR}"
+if [ 0 -ne ${PR} ]; then
+  echo "PR found"
+  git fetch origin pull/${PR}/head:tmppr
+  git checkout tmppr
+fi

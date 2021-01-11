@@ -4,11 +4,13 @@ SCPTARGET=root@$1
 
 case "$2" in
         modules)
-            scp -r /Users/puppet/Repos/puppet-enterprise-modules/modules/$3/lib ${SCPTARGET}:/opt/puppetlabs/server/data/environments/enterprise/modules/$3/
+            scp -r /Users/puppet/Repos/puppet-enterprise-modules/modules/$3 ${SCPTARGET}:/opt/puppetlabs/server/data/environments/enterprise/modules/
             ;;
         tasks)
             scp -r /Users/puppet/Repos/enterprise_tasks/plans/ ${SCPTARGET}:/opt/puppetlabs/installer/share/Boltdir/site/enterprise_tasks
+            scp -r /Users/puppet/Repos/enterprise_tasks/plans/ ${SCPTARGET}:/opt/puppetlabs/installer/share/Boltdir/site-modules/enterprise_tasks
             scp -r /Users/puppet/Repos/enterprise_tasks/tasks/ ${SCPTARGET}:/opt/puppetlabs/installer/share/Boltdir/site/enterprise_tasks
+            scp -r /Users/puppet/Repos/enterprise_tasks/tasks/ ${SCPTARGET}:/opt/puppetlabs/installer/share/Boltdir/site-modules/enterprise_tasks
             ;;        
         shim)
             scp -r /Users/puppet/Repos/pe-installer-shim/puppet-enterprise-installer ${SCPTARGET}:~
